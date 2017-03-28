@@ -1,0 +1,30 @@
+{
+  "name": "cce-task-routing",
+  "version": "0.0.1",
+  "description": "An NPM module wrapper on Cisco Unified CCE Task Routing APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umnagendra/cce-task-routing.git"
+  },
+  "keywords": [
+    "cisco",
+    "contactcenter",
+    "contact-center",
+    "cce",
+    "task-routing",
+    "socialminer"
+  ],
+  "author": "Nagendra U M",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/umnagendra/cce-task-routing/issues"
+  },
+  "homepage": "https://github.com/umnagendra/cce-task-routing#readme",
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# IDE-specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings
+
+# The irritating thing that gets created every time you open any file in OS X
+.DS_Store
