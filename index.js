@@ -2,6 +2,7 @@
 
 var util = require('util');
 var json2xml = require('js2xmlparser');
+var xml2js = require('xml2js');
 var validator = require('validator');
 var request = require('request-promise-native');
 
@@ -67,6 +68,22 @@ function constructTaskPayload(name, title, description, scriptSelector,
     return json2xml.parse("Task", taskJson);
 }
 
+function validateTaskRefURL(taskRefURL) {
+    if(!validator.isURL(taskRefURL, {protocols: config.secure === true ? SECURE_SCHEME : PLAIN_SCHEME,
+                                     require_tld: false, require_protocol: true, require_host: false,
+                                     allow_underscores:true})) {
+        throw new Error('Invalid input. \'' + taskRefURL + '\' is not a valid task URL');
+    }
+}
+
+function convertTaskStatusResponseToJson(responseXml) {
+    var status = null;
+    xml2js.parseString(responseXml, {explicitArray: false, explicitRoot: false}, function(err, result) {
+        status = result;
+    });
+    return status;
+}
+
 module.exports = {
         init : function(socialMinerHost, taskFeedID, secure=true) {
             if (!validator.isFQDN(socialMinerHost, {require_tld: false})) {
@@ -107,16 +124,30 @@ module.exports = {
                 strictSSL: false
             };
 
-            return request(options);
+            return request(options).then(function(response) {
+                return response.headers['location'];
+            });
+        },
+
+        getTaskStatus : function(taskRefURL) {
+            validateTaskRefURL(taskRefURL);
+            var options = {
+                uri: taskRefURL,
+                method: 'GET',
+                headers: {
+                    'Accept' : 'application/xml'
+                },
+                jar: true,
+                strictSSL: false
+            };
+
+            return request(options).then(function(response) {
+                return convertTaskStatusResponseToJson(response);
+            });
         },
 
         cancelTaskRequest : function(taskRefURL) {
-            if(!validator.isURL(taskRefURL, {protocols: config.secure === true ? SECURE_SCHEME : PLAIN_SCHEME,
-                                             require_tld: false, require_protocol: true, require_host: false,
-                                             allow_underscores:true})) {
-                throw new Error('Invalid input. \'' + taskRefURL + '\' is not a valid task URL');
-            }
-
+            validateTaskRefURL(taskRefURL);
             var options = {
                 uri: taskRefURL,
                 method: 'DELETE',
