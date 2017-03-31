@@ -1,5 +1,8 @@
 # cce-task-routing
-A small library (node module) for Cisco Unified CCE Task Routing
+A simple library (node module) for Cisco Unified CCE Task Routing
+
+## What is Cisco Unified CCE Task Routing?
+Read more here: https://developer.cisco.com/site/task-routing/
 
 ## System Requirements
 * nodejs >= 6.0.0
