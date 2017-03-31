@@ -90,8 +90,6 @@ module.exports = {
                 throw new Error('One or more mandatory args are undefined or null');
             }
 
-            // TODO - validate if callVariables, eccVariables and otherVariables is a Map
-
             var taskPayload = constructTaskPayload(name, title, description, scriptSelector,
                                                     callVariables, eccVariables, otherVariables, requeueOnRecovery);
 
@@ -105,6 +103,23 @@ module.exports = {
                 },
                 resolveWithFullResponse: true,
                 json: false,
+                jar: true,
+                strictSSL: false
+            };
+
+            return request(options);
+        },
+
+        cancelTaskRequest : function(taskRefURL) {
+            if(!validator.isURL(taskRefURL, {protocols: config.secure === true ? SECURE_SCHEME : PLAIN_SCHEME,
+                                             require_tld: false, require_protocol: true, require_host: false,
+                                             allow_underscores:true})) {
+                throw new Error('Invalid input. \'' + taskRefURL + '\' is not a valid task URL');
+            }
+
+            var options = {
+                uri: taskRefURL,
+                method: 'DELETE',
                 jar: true,
                 strictSSL: false
             };
