@@ -29,6 +29,8 @@
   },
   "dependencies": {
     "js2xmlparser": "^3.0.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3",
     "validator": "^7.0.0"
   },
   "devDependencies": {

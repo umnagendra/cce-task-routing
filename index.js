@@ -1,7 +1,9 @@
 'use strict';
 
+var util = require('util');
 var json2xml = require('js2xmlparser');
 var validator = require('validator');
+var request = require('request-promise-native');
 
 // CONSTANTS
 var SECURE_SCHEME       = "https";
@@ -25,6 +27,7 @@ function createCallVariables(variableArray) {
 }
 
 // TODO - Refactor `createCallVariables` and `createEccVariables` into a single function
+// TODO - Move all payload creation code into a separate task_util module?
 
 function createEccVariables(variableArray) {
     var eccVars = new Array();
@@ -47,7 +50,6 @@ function createVariables(callVariables, eccVariables, otherVariables) {
     allVars = allVars.concat(createCallVariables(callVariables))
                         .concat(createEccVariables(eccVariables))
                         .concat(createOtherVariables(otherVariables));
-    console.log("All Variables = " + JSON.stringify(allVars, null, 2));
     return allVars;
 }
 
@@ -93,6 +95,20 @@ module.exports = {
             var taskPayload = constructTaskPayload(name, title, description, scriptSelector,
                                                     callVariables, eccVariables, otherVariables, requeueOnRecovery);
 
-            // TODO POST request to SocialMiner
+            var options = {
+                uri: util.format(TASK_URI, config.secure === true ? SECURE_SCHEME : PLAIN_SCHEME,
+                                    config.socialMinerHost, config.taskFeedID),
+                method: 'POST',
+                body: taskPayload,
+                headers: {
+                    'Content-Type' : 'application/xml'
+                },
+                resolveWithFullResponse: true,
+                json: false,
+                jar: true,
+                strictSSL: false
+            };
+
+            return request(options);
         }
 };
