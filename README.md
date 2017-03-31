@@ -1,4 +1,6 @@
 # cce-task-routing
+[![npm package](https://nodei.co/npm/cce-task-routing.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cce-task-routing/)
+
 [![Build Status](https://travis-ci.org/umnagendra/cce-task-routing.svg?branch=master)](https://travis-ci.org/umnagendra/cce-task-routing)
 
 A simple library (node module) for Cisco Unified CCE Task Routing
