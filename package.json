@@ -28,6 +28,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
+    "js2xmlparser": "^3.0.0",
     "validator": "^7.0.0"
   },
   "devDependencies": {
