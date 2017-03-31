@@ -1,4 +1,6 @@
 # cce-task-routing
+[![Build Status](https://travis-ci.org/umnagendra/cce-task-routing.svg?branch=master)](https://travis-ci.org/umnagendra/cce-task-routing)
+
 A simple library (node module) for Cisco Unified CCE Task Routing
 
 ## What is Cisco Unified CCE Task Routing?
