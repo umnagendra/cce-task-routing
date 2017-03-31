@@ -1,7 +1,7 @@
 {
   "name": "cce-task-routing",
-  "version": "0.0.1",
-  "description": "An NPM module wrapper on Cisco Unified CCE Task Routing APIs",
+  "version": "0.0.2",
+  "description": "A simple library for Cisco Unified CCE Task Routing",
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec"
