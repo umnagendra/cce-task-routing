@@ -2,6 +2,9 @@
 [![npm package](https://nodei.co/npm/cce-task-routing.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cce-task-routing/)
 
 [![Build Status](https://travis-ci.org/umnagendra/cce-task-routing.svg?branch=master)](https://travis-ci.org/umnagendra/cce-task-routing)
+[![Dependency Status](https://david-dm.org/Askrround/cce-task-routing.svg?theme=shields.io)](https://david-dm.org/Askrround/cce-task-routing)
+[![license](https://img.shields.io/npm/l/cce-task-routing.svg)](LICENSE)
+[![npm downloads](https://img.shields.io/npm/dm/cce-task-routing.svg)](https://img.shields.io/npm/dm/cce-task-routing.svg)
 
 A simple library (node module) for Cisco Unified CCE Task Routing
 
